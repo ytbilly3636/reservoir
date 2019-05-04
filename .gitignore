@@ -6,3 +6,4 @@
 !.gitignore
 !esn.py
 !esn_cls.py
+!predictive_coding.py
