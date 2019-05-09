@@ -34,10 +34,15 @@ class EchoStateNetwork(object):
         return np.tanh(self._x.dot(self._w_o.T))
 
 
-    def update(self, t, lr=0.01):
+    def update(self, t, la=0.1):
         # t (N, o): supervisor through time N
 
-        self._w_o = np.linalg.inv((self._x_log[1:].T.dot(self._x_log[1:]) + lr * np.eye(self._x_log[1:].shape[1]))).dot(self._x_log[1:].T).dot(t).T
+        self._w_o = np.linalg.inv((self._x_log[1:].T.dot(self._x_log[1:]) + la * np.eye(self._x_log[1:].shape[1]))).dot(self._x_log[1:].T).dot(t).T
+
+    
+    def update_descent(self, t, lr, la=0.1):
+        obj_w_o = np.linalg.inv((self._x_log[1:].T.dot(self._x_log[1:]) + la * np.eye(self._x_log[1:].shape[1]))).dot(self._x_log[1:].T).dot(t).T
+        self._w_o = self._w_o + lr * (obj_w_o - self._w_o)
 
 
 if __name__ == '__main__':
