@@ -26,10 +26,14 @@ class EchoStateNetwork(object):
         self._x_log = self._x
 
 
-    def __call__(self, u, leak=0.1):
+    def __call__(self, u=None, leak=0.1):
         # u (1, i): input at a moment
 
-        self._x = np.tanh((1 - leak) * self._x + leak * (u.dot(self._w_i.T) + self._x.dot(self._w_r.T)))
+        if not u is None:
+            self._x = np.tanh((1 - leak) * self._x + leak * (u.dot(self._w_i.T) + self._x.dot(self._w_r.T)))
+        else:
+            self._x = np.tanh((1 - leak) * self._x + leak * self._x.dot(self._w_r.T))
+
         self._x_log = np.append(self._x_log, self._x, axis=0)
         return np.tanh(self._x.dot(self._w_o.T))
 
