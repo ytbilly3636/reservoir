@@ -6,22 +6,11 @@ from esn import EchoStateNetwork
 
 
 class EchoStateNetworkClassifier(EchoStateNetwork):
-    def reset(self):
-        # _x (1, r): state of reservoir
-        self._x = np.zeros((1, self._w_r.shape[0]), dtype=np.float32)
-
-
-    def __call__(self, u, leak=0.1):
-        # u (1, i): input at a moment
-
-        self._x = np.tanh((1 - leak) * self._x + leak * (u.dot(self._w_i.T) + self._x.dot(self._w_r.T)))
-        return np.tanh(self._x.dot(self._w_o.T))
-
-
-    def update(self, t, lr=0.01):
+    def update(self, t, la=1.0):
         # t (1, o): supervisor at N
+        # la: coeffiicient of norm term
 
-        self._w_o = np.linalg.inv((self._x.T.dot(self._x) + lr * np.eye(self._x.shape[1]))).dot(self._x.T).dot(t).T
+        self._w_o = np.linalg.inv((self._x.T.dot(self._x) + la * np.eye(self._x.shape[1]))).dot(self._x.T).dot(t).T
 
 
 if __name__ == '__main__':
