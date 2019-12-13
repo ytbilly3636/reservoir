@@ -4,6 +4,10 @@
 
 !README.md
 !.gitignore
-!esn.py
-!force.py
-!predictive_coding.py
+!reservoir/__init__.py
+!reservoir/esn.py
+!reservoir/force.py
+!reservoir/predictive_coding.py
+!benchmark/esn_short_term_memory.py
+!benchmark/esn_parity_check.py
+!benchmark/esn_narma.py

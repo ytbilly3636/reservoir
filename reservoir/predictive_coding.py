@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import numpy as np
-from esn import EchoStateNetwork
+from .esn import EchoStateNetwork
 
 
 class PredictiveCoding(object):

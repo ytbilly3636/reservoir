@@ -3,7 +3,7 @@
 # refer https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2756108/
 
 import numpy as np
-from esn import EchoStateNetwork
+from .esn import EchoStateNetwork
 
 
 class FORCE(EchoStateNetwork):
