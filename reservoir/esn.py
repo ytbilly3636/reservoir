@@ -73,14 +73,14 @@ class EchoStateNetwork(object):
 
 
     def update_online(self, t, la=1.0):
-        # t (1, o): supervisor at time N
+        # t (1, o): supervisor at a moment
         # la: coeffiicient of norm term
 
         self._w_o = np.linalg.inv((self._x.T.dot(self._x) + la * np.eye(self._x.shape[1]))).dot(self._x.T).dot(t).T
 
 
     def update_online_descent(self, t, lr, la=1.0):
-        # t (1, o): supervisor at time N
+        # t (1, o): supervisor at a moment
         # lr: learning rate
         # la: coeffiicient of norm term
 
