@@ -56,19 +56,19 @@ class EchoStateNetwork(object):
         return self._y
 
 
-    def update(self, t, la=1.0):
+    def update(self, t, t_start_at=0, la=1.0):
         # t (N, o): supervisor through time N
         # la: coeffiicient of norm term
 
-        self._w_o = np.linalg.inv((self._x_log[1:].T.dot(self._x_log[1:]) + la * np.eye(self._x_log[1:].shape[1]))).dot(self._x_log[1:].T).dot(t).T
+        self._w_o = np.linalg.inv((self._x_log[1+t_start_at:].T.dot(self._x_log[1+t_start_at:]) + la * np.eye(self._x_log[1+t_start_at:].shape[1]))).dot(self._x_log[1+t_start_at:].T).dot(t).T
 
     
-    def update_descent(self, t, lr, la=1.0):
+    def update_descent(self, t, lr, t_start_at=0, la=1.0):
         # t (N, o): supervisor through time N
         # lr: learning rate
         # la: coeffiicient of norm term
 
-        obj_w_o = np.linalg.inv((self._x_log[1:].T.dot(self._x_log[1:]) + la * np.eye(self._x_log[1:].shape[1]))).dot(self._x_log[1:].T).dot(t).T
+        obj_w_o = np.linalg.inv((self._x_log[1+t_start_at:].T.dot(self._x_log[1+t_start_at:]) + la * np.eye(self._x_log[1+t_start_at:].shape[1]))).dot(self._x_log[1+t_start_at:].T).dot(t).T
         self._w_o = self._w_o + lr * (obj_w_o - self._w_o)
 
 
