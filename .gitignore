@@ -4,6 +4,7 @@
 
 !README.md
 !.gitignore
+!Dockerfile
 !reservoir/__init__.py
 !reservoir/esn.py
 !reservoir/force.py
