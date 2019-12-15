@@ -12,3 +12,4 @@
 !benchmark/esn_short_term_memory.py
 !benchmark/esn_parity_check.py
 !benchmark/esn_narma.py
+!benchmark/esn_mackey_glass.py
