@@ -1,8 +1,7 @@
-# prefrontal_cortex
+# reservoir
 
 ## What is this
 This repository is for developing reservoir computing models (echo state networks).  
-Especially, the models are used for prefrontal cortex models.
 
 ## Requirement
 * Python
